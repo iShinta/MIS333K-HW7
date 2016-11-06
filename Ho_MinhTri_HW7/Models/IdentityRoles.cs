@@ -6,9 +6,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System.Web.Mvc;
 
-
-
-//TODO: Change the namespace here to match your project's name
 namespace Ho_MinhTri_HW7.Models
 {
     public class AppRole: IdentityRole

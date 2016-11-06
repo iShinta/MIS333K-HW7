@@ -1,5 +1,4 @@
-﻿//TODO: Change the using statement here to match your project's name
-using Ho_MinhTri_HW7.Models;
+﻿using Ho_MinhTri_HW7.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -7,7 +6,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-//TODO: Change the namespace here to match your project's name
 namespace Ho_MinhTri_HW7.Controllers
 {
     [Authorize]
@@ -120,7 +118,14 @@ namespace Ho_MinhTri_HW7.Controllers
             {
                 //TODO: Add fields to user here so they will be saved to the database
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    OKToText = model.OKToText,
+                    Major = model.Major
+                };
 
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);

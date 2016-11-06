@@ -22,7 +22,7 @@ namespace Ho_MinhTri_HW7.Models
 
         //NAVIGATIONAL PROPERTIES
         [Display (Name = "Comprising Members")]
-        public virtual List<Customer> CustomersList { get; set; }
+        public virtual List<AppUser> MembersList { get; set; }
         public virtual List<Event> EventsSponsored { get; set; }
     }
 }

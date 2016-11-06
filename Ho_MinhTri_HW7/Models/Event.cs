@@ -35,7 +35,7 @@ namespace Ho_MinhTri_HW7.Models
         //Members only - OK
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Members only?")]
-        public Boolean CustomersOnly { get; set; }
+        public Boolean MembersOnly { get; set; }
 
         //NAVIGATION PROPERTIES
         [Display (Name = "Sponsoring Committee")]

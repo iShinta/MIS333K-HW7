@@ -5,7 +5,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-//TODO: Change the using statement here to match your project's name
 using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7

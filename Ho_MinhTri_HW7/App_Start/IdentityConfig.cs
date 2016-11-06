@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-//TODO: Change the using statement here to match your project's name
 using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7
@@ -34,7 +33,7 @@ namespace Ho_MinhTri_HW7
                 RequireUniqueEmail = true  //NOTE: This is the line of code that only allows one account per email
             };
 
-            // TODO: Configure validation logic for passwords - what are the rules for your passwords?
+            // Configure validation logic for passwords - what are the rules for your passwords?
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,

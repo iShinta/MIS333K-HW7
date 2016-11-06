@@ -6,10 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
-//TODO: Change the using statement here to match your project's name
 using Ho_MinhTri_HW7.Models;
 
-//TODO: Change the namespace here to match your project's name
 namespace Ho_MinhTri_HW7.Controllers
 {
     //TODO: Once you have roles working, uncomment the tag below to limit access to this page

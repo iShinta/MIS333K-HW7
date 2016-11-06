@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-//TODO: Change the namespace here to match your project's name
 namespace Ho_MinhTri_HW7.Models
 {
+    //Put the enum outside the class to make it accessible from UserViewModels (RegisterViewModel)
+    public enum MajorList { Accounting, Business_Honors, Finance, International_Business, Management, MIS, Marketing, SCM, STM }
+
     // You can add profile data for the user by adding more properties to your AppUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class AppUser : IdentityUser
     {
         //SCALAR PROPERTIES
-        //ID
-        [Display(Name = "Customer ID")]
-        public Int32 CustomerID { get; set; }
 
         //First Name
         [Required(ErrorMessage = "First Name is required.")]
@@ -30,27 +29,12 @@ namespace Ho_MinhTri_HW7.Models
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
-        //Email
-        [Required(ErrorMessage = "Email is required")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid email address.")]
-        [Display(Name = "Email Address")]
-        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
-        public String Email { get; set; }
-
-        //Phone number
-        [Required(ErrorMessage = "Phone number is required")]
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Phone Number")]
-        [DisplayFormat(DataFormatString = "{0:###-###-####}", ApplyFormatInEditMode = true)]
-        public String PhoneNumber { get; set; }
-
         //OK to text
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Is it OK to text the member?")]
         public bool OKToText { get; set; }
 
         //Major
-        public enum MajorList { Accounting, Business_Honors, Finance, International_Business, Management, MIS, Marketing, SCM, STM }
         [Required(ErrorMessage = "Major is required")]
         [Display(Name = "Major")]
         public MajorList Major { get; set; }
@@ -72,23 +56,24 @@ namespace Ho_MinhTri_HW7.Models
 
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        //TODO: Add your dbSets here.  As an example, I've included one for products
         //Remember - the IdentityDbContext already contains a db set for Users.  If you add another one, your code will break
-        //public DbSet<Product> Products { get; set; }
+        //Create the db set
+        public DbSet<AppRole> AppRoles { get; set; }
+        //Looks like there's no need for Members as it's created via Users in Identity
+        //public DbSet<AppUser> Members { get; set; }
+        public DbSet<Committee> Committees { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         //Constructor that invokes the base constructor
         public AppDbContext() : base("MyDbConnection", throwIfV1Schema: false)
         {
         }
 
-        //Create the db set
-        public DbSet<AppUser> Members { get; set; }
-        public DbSet<Committee> Committees { get; set; }
-        public DbSet<Event> Events { get; set; }
-
         public static AppDbContext Create()
         {
             return new AppDbContext();
         }
+
+        public System.Data.Entity.DbSet<Ho_MinhTri_HW7.Models.AppUser> AppUsers { get; set; }
     }
 }

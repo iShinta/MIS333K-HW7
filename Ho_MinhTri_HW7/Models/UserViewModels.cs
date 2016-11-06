@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿//Libs from HW4, mainly for Scalar properties
+using System;
+//Original Libs
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 
@@ -39,6 +42,26 @@ namespace Ho_MinhTri_HW7.Models
         public string ConfirmPassword { get; set; }
 
         //TODO: Add additional fields to register users here.
+        //First Name
+        [Required(ErrorMessage = "First Name is required.")]
+        [Display(Name = "First Name")]
+        public String FirstName { get; set; }
+
+        //Last Name
+        [Required(ErrorMessage = "Last Name is required.")]
+        [Display(Name = "Last Name")]
+        public String LastName { get; set; }
+
+        //OK to text
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Is it OK to text the member?")]
+        public bool OKToText { get; set; }
+
+        //Major
+        //public enum MajorList { } //Created in IdentityModels
+        [Required(ErrorMessage = "Major is required")]
+        [Display(Name = "Major")]
+        public MajorList Major { get; set; }
     }
 
     public class ChangePasswordViewModel
