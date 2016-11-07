@@ -78,7 +78,7 @@ namespace Ho_MinhTri_HW7.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,OKToText,Major,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AppUser appUser)
+        public ActionResult Edit([Bind(Include = "FirstName,LastName,OKToText,Major,Email,PhoneNumber")] AppUser appUser)
         {
             if (ModelState.IsValid)
             {
