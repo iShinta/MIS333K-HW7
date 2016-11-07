@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Ho_MinhTri_HW7.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AccountController : Controller
     {
         public enum ManageMessageId
@@ -116,7 +116,7 @@ namespace Ho_MinhTri_HW7.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: Add fields to user here so they will be saved to the database
+                //Add fields to user here so they will be saved to the database
                 //Create a new user with all the properties you need for the class
                 var user = new AppUser {
                     UserName = model.Email,
@@ -131,10 +131,11 @@ namespace Ho_MinhTri_HW7.Controllers
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //TODO: Once you get roles working, you may want to add users to roles upon creation
+                //Once you get roles working, you may want to add users to roles upon creation
                 //await UserManager.AddToRoleAsync(user.Id, "User"); //adds user to role called "User"
                 // --OR--
                 //await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+                await UserManager.AddToRoleAsync(user.Id, "Member"); //adds user to role called "Member"
 
                 if (result.Succeeded) //user was created successfully
                 {

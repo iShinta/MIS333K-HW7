@@ -55,6 +55,7 @@ namespace Ho_MinhTri_HW7.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AllCommittees = GetAllEvents(committee);
             return View(committee);
         }
 
@@ -70,6 +71,9 @@ namespace Ho_MinhTri_HW7.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Add to ViewBag
+            ViewBag.AllCommittees = GetAllEvents(committee);
             return View(committee);
         }
 
@@ -86,6 +90,8 @@ namespace Ho_MinhTri_HW7.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //Add to ViewBag
+            ViewBag.AllCommittees = GetAllEvents(committee);
             return View(committee);
         }
 
@@ -122,6 +128,31 @@ namespace Ho_MinhTri_HW7.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // SelectList Events
+        public MultiSelectList GetAllEvents(Committee @committee)
+        {
+            //Populate list of members
+            var query = from e in db.Events
+                        orderby e.EventDate
+                        select e;
+
+            //create list and execute query
+            List<Event> allEvents = query.ToList();
+
+            //Create list of selected members
+            List<Int32> SelectedEvents = new List<Int32>();
+
+            //Loop through list of members and add MemberId
+            foreach (Event m in @committee.EventsSponsored)
+            {
+                SelectedEvents.Add(m.EventID);
+            }
+
+            MultiSelectList allMemberList = new MultiSelectList(allEvents, "EventTitle", "EventDate", SelectedEvents);
+
+            return allMemberList;
         }
     }
 }

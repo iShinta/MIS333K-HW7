@@ -38,6 +38,8 @@ namespace Ho_MinhTri_HW7.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
+            //Add to ViewBag
+            ViewBag.AllCommittees = GetAllCommittees();
             return View();
         }
 
@@ -122,6 +124,66 @@ namespace Ho_MinhTri_HW7.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // SelectList Committees
+        //COMMITTEE ALREADY CHOSEN 
+        public SelectList GetAllCommittees(Event @event)
+        {
+            //Populate list of committees
+            var query = from c in db.Committees
+                        orderby c.CommitteeName
+                        select c;
+
+            //create list and execute query
+            List<Committee> allCommittees = query.ToList();
+
+            //convert to select list
+            SelectList allCommitteesList = new SelectList(allCommittees, "CommitteeID", "CommitteeName", @event.SponsoringCommittee.CommitteeID);
+
+            return allCommitteesList;
+        }
+
+        // SelectList Committees
+        public SelectList GetAllCommittees()
+        {
+            //Populate list of committees
+            var query = from c in db.Committees
+                        orderby c.CommitteeName
+                        select c;
+
+            //create list and execute query
+            List<Committee> allCommittees = query.ToList();
+
+            //convert to select list
+            SelectList allCommitteesList = new SelectList(allCommittees, "CommitteeID", "CommitteeName");
+
+            return allCommitteesList;
+        }
+
+        // SelectList Committees
+        public MultiSelectList GetAllMembers(Event @event)
+        {
+            //Populate list of members
+            var query = from m in db.Users
+                        orderby m.Email
+                        select m;
+
+            //create list and execute query
+            List<AppUser> allMembers = query.ToList();
+
+            //Create list of selected members
+            List<String> SelectedMembers = new List<String>();
+
+            //Loop through list of members and add MemberId
+            foreach (AppUser m in @event.Members)
+            {
+                SelectedMembers.Add(m.Id);
+            }
+
+            MultiSelectList allMemberList = new MultiSelectList(allMembers, "Id", "Email", SelectedMembers);
+
+            return allMemberList;
         }
     }
 }

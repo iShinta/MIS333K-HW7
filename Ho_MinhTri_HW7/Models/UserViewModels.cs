@@ -41,7 +41,7 @@ namespace Ho_MinhTri_HW7.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        //TODO: Add additional fields to register users here.
+        //Add additional fields to register users here.
         //First Name
         [Required(ErrorMessage = "First Name is required.")]
         [Display(Name = "First Name")]

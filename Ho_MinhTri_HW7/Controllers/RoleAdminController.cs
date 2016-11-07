@@ -10,8 +10,8 @@ using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7.Controllers
 {
-    //TODO: Once you have roles working, uncomment the tag below to limit access to this page
-    //[Authorize]
+    //Once you have roles working, uncomment the tag below to limit access to this page
+    [Authorize]
     public class RoleAdminController : Controller
     {
         //

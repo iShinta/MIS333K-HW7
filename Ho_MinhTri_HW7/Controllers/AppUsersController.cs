@@ -123,5 +123,46 @@ namespace Ho_MinhTri_HW7.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // SelectList Events
+        public MultiSelectList GetAllEvents()
+        {
+            //Populate list of members
+            var query = from e in db.Events
+                        orderby e.EventDate
+                        select e;
+
+            //create list and execute query
+            List<Event> allEvents = query.ToList();
+
+            SelectList allMemberList = new SelectList(allEvents, "EventTitle", "EventDate");
+
+            return allMemberList;
+        }
+
+        // SelectList Events
+        public MultiSelectList GetAllEvents(AppUser @customer)
+        {
+            //Populate list of events
+            var query = from e in db.Events
+                        orderby e.EventDate
+                        select e;
+
+            //create list and execute query
+            List<Event> allEvents = query.ToList();
+
+            //Create list of selected events
+            List<Int32> SelectedEvents = new List<Int32>();
+
+            //Loop through list of events and add EventID
+            foreach (Event e in @customer.EventAttending) //////////////////////
+            {
+                SelectedEvents.Add(e.EventID);
+            }
+
+            MultiSelectList allMemberList = new MultiSelectList(allEvents, "EventID", "EventTitle", SelectedEvents);
+
+            return allMemberList;
+        }
     }
 }
