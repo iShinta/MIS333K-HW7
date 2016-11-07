@@ -52,6 +52,13 @@ namespace Ho_MinhTri_HW7.Models
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
+        //Phone number
+        [Required(ErrorMessage = "Phone number is required")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Number")]
+        [DisplayFormat(DataFormatString = "{0:###-###-####}", ApplyFormatInEditMode = true)]
+        public String PhoneNumber { get; set; }
+
         //OK to text
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Is it OK to text the member?")]

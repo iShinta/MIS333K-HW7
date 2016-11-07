@@ -58,9 +58,9 @@ namespace Ho_MinhTri_HW7.Models
     {
         //Remember - the IdentityDbContext already contains a db set for Users.  If you add another one, your code will break
         //Create the db set
+        //No need for Members as it's created via Users in Identity
+        //public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
-        //Looks like there's no need for Members as it's created via Users in Identity
-        //public DbSet<AppUser> Members { get; set; }
         public DbSet<Committee> Committees { get; set; }
         public DbSet<Event> Events { get; set; }
 
@@ -74,6 +74,6 @@ namespace Ho_MinhTri_HW7.Models
             return new AppDbContext();
         }
 
-        public System.Data.Entity.DbSet<Ho_MinhTri_HW7.Models.AppUser> AppUsers { get; set; }
+        //public System.Data.Entity.DbSet<Ho_MinhTri_HW7.Models.AppUser> AppUsers { get; set; }
     }
 }

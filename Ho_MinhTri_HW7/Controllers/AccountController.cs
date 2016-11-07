@@ -123,6 +123,7 @@ namespace Ho_MinhTri_HW7.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
                     OKToText = model.OKToText,
                     Major = model.Major
                 };

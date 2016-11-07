@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201611061736440_InitialSetup.Designer.cs">
       <DependentUpon>201611061736440_InitialSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611071550399_DbSetUpdate.cs" />
+    <Compile Include="Migrations\201611071550399_DbSetUpdate.Designer.cs">
+      <DependentUpon>201611071550399_DbSetUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Committee.cs" />
     <Compile Include="Models\Event.cs" />
@@ -256,6 +260,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611061736440_InitialSetup.resx">
       <DependentUpon>201611061736440_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071550399_DbSetUpdate.resx">
+      <DependentUpon>201611071550399_DbSetUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
