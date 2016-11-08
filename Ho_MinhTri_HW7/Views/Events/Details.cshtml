@@ -42,8 +42,30 @@
             @Html.DisplayFor(model => model.MembersOnly)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsoringCommittee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsoringCommittee.CommitteeName)
+        </dd>
+
     </dl>
 </div>
+<table class="table table-bordered">
+    <tr>
+        <th>Member First Name</th>
+        <th>Member Last Name</th>
+    </tr>
+
+    @foreach (var item in Model.Members)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+        </tr>
+    }
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
     @Html.ActionLink("Back to List", "Index")

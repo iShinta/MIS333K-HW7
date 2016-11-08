@@ -10,17 +10,20 @@ using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {
         private AppDbContext db = new AppDbContext();
 
         // GET: Events
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Events.ToList());
         }
 
         // GET: Events/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +39,7 @@ namespace Ho_MinhTri_HW7.Controllers
         }
 
         // GET: Events/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +48,7 @@ namespace Ho_MinhTri_HW7.Controllers
         // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EventID,EventTitle,EventDate,EventLocation,MembersOnly")] Event @event)
@@ -59,6 +64,7 @@ namespace Ho_MinhTri_HW7.Controllers
         }
 
         // GET: Events/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +82,7 @@ namespace Ho_MinhTri_HW7.Controllers
         // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EventID,EventTitle,EventDate,EventLocation,MembersOnly")] Event @event)
@@ -90,6 +97,7 @@ namespace Ho_MinhTri_HW7.Controllers
         }
 
         // GET: Events/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +113,7 @@ namespace Ho_MinhTri_HW7.Controllers
         }
 
         // POST: Events/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7.Controllers
 {
+    [Authorize]
     public class AppUsersController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -78,10 +80,15 @@ namespace Ho_MinhTri_HW7.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FirstName, LastName, OKToText, Major, Email, PhoneNumber")] AppUser appUser)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,OKToText,Major,Email,PhoneNumber")] AppUser appUser)
         {
-            if (ModelState.IsValid)
+            if (appUser.Id != User.Identity.GetUserId() && !User.IsInRole("Admin"))
             {
+                return RedirectToAction("Login", "Account");
+            }
+            else if (ModelState.IsValid)
+            {
+                appUser.UserName = appUser.Email;
                 db.Entry(appUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -10,6 +10,7 @@ using Ho_MinhTri_HW7.Models;
 
 namespace Ho_MinhTri_HW7.Controllers
 {
+    [Authorize]
     public class CommitteesController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -80,7 +81,11 @@ namespace Ho_MinhTri_HW7.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CommitteeID,CommitteeName")] Committee committee)
         {
-            if (ModelState.IsValid)
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else if (ModelState.IsValid)
             {
                 db.Entry(committee).State = EntityState.Modified;
                 db.SaveChanges();
