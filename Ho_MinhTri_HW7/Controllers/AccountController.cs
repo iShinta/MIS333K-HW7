@@ -135,6 +135,7 @@ namespace Ho_MinhTri_HW7.Controllers
                 //await UserManager.AddToRoleAsync(user.Id, "User"); //adds user to role called "User"
                 // --OR--
                 //await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+                await UserManager.AddToRoleAsync(user.Id, "Member"); //adds user to role called "Member"
 
                 if (result.Succeeded) //user was created successfully
                 {
